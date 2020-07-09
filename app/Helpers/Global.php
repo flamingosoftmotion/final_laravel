@@ -23,3 +23,4 @@ function totalGuru()
 {
 	return Guru::count();
 }
+
