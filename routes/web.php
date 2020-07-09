@@ -26,11 +26,7 @@ Route::group(['middleware' => ['auth','checkRole:user']],function(){ //middlewar
     Route::get('/jawaban/{id}', 'JawabanController@index')->name('jawaban');
     Route::post('/jawaban/{id_pertanyaan}', 'JawabanController@store')->name('jawaban');
 
-// Belum Dibuat
-//     Route::get('/komentar', 'KomentarController@show');
-//     Route::get('/komentar/index', 'KomentarController@index')->name('komentar');
-//     Route::post('/komentar/store', 'KomentarController@store')->name('komentar');
-// });
+});
 
 
 
