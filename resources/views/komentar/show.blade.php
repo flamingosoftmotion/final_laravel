@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Jawaban</h1>
+            <h1>Komentar</h1>
             <h3>Poin Reputasi Anda: {{ $cek->reputation }}</h3>
           </div>
         </div>
@@ -25,17 +25,17 @@
                   <thead>
                   <tr>
                     <td>No</td>
+                    <td>Komentar</td>
                     <td>Jawaban</td>
-                    <td>Pertanyaan</td>
                     <td>Tanggal Dibuat</td>
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($data_jawaban as $index => $data)
+                    @foreach ($data_komentar as $index => $data)
                     <tr>
-                      <td>{{ $index +1 }}</td>
-                      <td>{{ $data->isi}}</td>
-                      <td>{{ $data->pertanyaan->isi}}</td>
+                      <td>{{ $index + 1 }}</td>
+                      <td>{{ $data->komentar}}</td>
+                      <td>{{ $cek->jawaban->isi}}</td> --}}
                       <td>{{ $data->created_at->format('d M Y')}}</td>
                     </tr>
                     @endforeach

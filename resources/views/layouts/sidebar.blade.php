@@ -46,6 +46,11 @@
           <span>Jawaban</span></a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="/komentar">
+          <i class="fas fa-server"></i>
+          <span>Komentar</span></a>
+      </li>
       
 
       <!-- Divider -->

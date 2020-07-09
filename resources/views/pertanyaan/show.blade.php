@@ -27,6 +27,7 @@
                     <td>Jawaban</td>
                     <td>Pertanyaan</td>
                     <td>Tanggal</td>
+                    <td>Aksi</td>
                   </tr>
                   </thead>
                   <tbody>
@@ -36,6 +37,12 @@
                       <td>{{ $data->isi}}</td>
                       <td>{{ $data->pertanyaan->isi}}</td>
                       <td>{{ $data->created_at->format('d M Y')}}</td>
+                      <td>
+                        <a href="{{ route('pertanyaan.count15') }}" class="btn btn-success btn-sm">Jawaban Relevan</a><br/><br/>
+                        <a href="{{ route('pertanyaan.upvote') }}" class="btn btn-primary btn-sm">Upvote</a> || 
+                        <a href="{{ route('pertanyaan.downvote') }}" class="btn btn-danger btn-sm">Downvote</a><br/><br/>
+                        <a href="{{ route('komentar') }}" class="btn btn-success btn-sm">Beri Komentar </a>
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -44,8 +51,10 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-      </div>
-      <!-- /.container-fluid -->
+          </div>
+          <!-- /.container-fluid -->
+          <br/>
+          <h2 style="margin-left: 30px">Poin Reputasi Anda: {{ $data->user->reputation }}</h2>
     </section>
     <!-- /.content -->
   </div>
@@ -54,9 +63,9 @@
 @section('footer')
 <script src="{{ asset('/admin') }}/plugins/datatables/jquery.dataTables.js"></script>
 <script src="{{ asset('/admin') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<script>
+{{-- <script>
   $(function () {
     $("#example1").DataTable();
   });
-</script>
+</script> --}}
 @stop

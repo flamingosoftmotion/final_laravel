@@ -17,11 +17,20 @@ Route::group(['middleware' => ['auth','checkRole:user']],function(){ //middlewar
     Route::post('/pertanyaan/update/{id}', 'PertanyaanController@update')->name('pertanyaan.update');
     Route::get('/pertanyaan/show/{id}', 'PertanyaanController@show')->name('pertanyaan.show');
 
+    //Route untuk menghitung Nilai Poin
+    Route::get('/pertanyaan/relevan','PertanyaanController@count15')->name('pertanyaan.count15');
+    Route::get('/pertanyaan/up','PertanyaanController@upvote')->name('pertanyaan.upvote');
+    Route::get('/pertanyaan/down','PertanyaanController@downvote')->name('pertanyaan.downvote');
+
     Route::get('/jawaban', 'JawabanController@show');
     Route::get('/jawaban/{id}', 'JawabanController@index')->name('jawaban');
     Route::post('/jawaban/{id_pertanyaan}', 'JawabanController@store')->name('jawaban');
 
-});
+// Belum Dibuat
+//     Route::get('/komentar', 'KomentarController@show');
+//     Route::get('/komentar/index', 'KomentarController@index')->name('komentar');
+//     Route::post('/komentar/store', 'KomentarController@store')->name('komentar');
+// });
 
 
 

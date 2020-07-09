@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pertanyaan;
 use App\Jawaban;
+use App\User;
+
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -12,7 +14,7 @@ class PertanyaanController extends Controller
 {
     public function index()
     {
-    	$data_pertanyaan = Pertanyaan::all();
+        $data_pertanyaan = Pertanyaan::all();
     	return view('pertanyaan.index', compact('data_pertanyaan'));
     }
 
@@ -29,13 +31,13 @@ class PertanyaanController extends Controller
             'tags' => 'required'
 
         ]);
-
-		$data = Pertanyaan::create([
-            'judul' => $request->get('judul'),
-			'isi' => $request->get('isi'),
-            'tags' => $request->get('tags')
-
-		]); 
+        
+        $data = new Pertanyaan;
+		$data->judul = $request->judul;
+		$data->isi = $request->isi;
+        $data->tags = $request->tags;
+        $data->user_id = 1;
+        $data->save();
 
 		return redirect('/pertanyaan')->with('success','Pertanyaan berhasil terkirim');	
     }
@@ -48,26 +50,53 @@ class PertanyaanController extends Controller
     
     public function edit($id)
     {
-        $data = Pertanyaan::findOrFail($id);
-        return view('pertanyaan.edit', compact(['data']));
+        $data_pertanyaan = Pertanyaan::findOrFail($id);
+        return view('pertanyaan.edit', compact('data_pertanyaan'));
     }
 
     public function update(Request $request, $id)
     {
+        $cek = Pertanyaan::find($id);
+
         Pertanyaan::find($id)->update([
-            'judul' => $request->get('judul'),
-            'isi' => $request->get('isi'),
-            'tags' => $request->get('tags')
-            
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'tags' => $cek->tags,
+            'user_id' => $cek->user->id
         ]); 
 
         return redirect('/pertanyaan')->with('success','Pertanyaan berhasil terupdate'); 
     }
 
-    public function show($pertanyaan_id)
+    public function show($id)
     {
-        $data_jawaban = Jawaban::where('pertanyaan_id', $id_pertanyaan)->get();
+        $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
         return view('pertanyaan.show', compact(['data_jawaban']));
+    }
+
+//Fungsi untuk menghitung Nilai Poin
+    public function count15()
+    {
+        $user = User::find(1);
+        $user->reputation += 10;
+        $user->save();
+        return redirect('/pertanyaan');
+    }
+
+    public function upvote()
+    {
+        $user = User::find(1);
+        $user->reputation += 1;
+        $user->save();
+        return redirect('/pertanyaan');
+    }
+
+    public function downvote()
+    {
+        $user = User::find(1);
+        $user->reputation -= 1;
+        $user->save();
+        return redirect('/pertanyaan');
     }
 
 }

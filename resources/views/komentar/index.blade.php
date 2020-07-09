@@ -8,9 +8,8 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>
-              Pertanyaan
+              Komentar
             </h1>
-            <h3>Poin Reputasi Anda: {{ $data_pertanyaan->user->reputation }}</h3>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -26,25 +25,22 @@
                 <div class="row">
                 	<div class="col-sm-6">
                 		
-                    <form action="{{route('pertanyaan.update', $data_pertanyaan->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('komentar', $data->id) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-
-                      <div class="form-group{{$errors->has('judul') ? ' has-error' : ''}}">
-                        <label>Judul</label>
-                        <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" value="{{$data_pertanyaan->judul}}">
-                        @if($errors->has('judul'))
-                          <span class="help-block">{{$errors->first('judul')}}</span>
-                        @endif
-                      </div>
                        
-                      <div class="form-group{{$errors->has('isi') ? ' has-error' : ''}}">
-                        <label>Isi</label>
-                        <textarea type="text" class="form-control" id="isi" name="isi" placeholder="Isi Pertanyaan" style="height: 150px;"> {{$data_pertanyaan->isi}}
-                        </textarea>
-                        @if($errors->has('isi'))
-                          <span class="help-block">{{$errors->first('isi')}}</span>
-                        @endif
-                      </div>                      
+                      <div class="form-group">
+                              <label>Komentar</label>
+                              <input type="text" class="form-control" value="{{$data->komentar}}" readonly="">
+
+                              <input id="id" type="hidden" name="id" value="{{ $data->id }}" required readonly="">
+                      </div>
+                      <div class="form-group{{$errors->has('komentar') ? ' has-error' : ''}}">
+                              <label>Isi</label>
+                              <textarea name="komentar" type="text" id="editor" class="form-control"></textarea>
+                              @if($errors->has('komentar'))
+                              <span class="help-block">{{$errors->first('komentar')}}</span>
+                          @endif
+                      </div>
                      
     	            	<div class="tombol_add">
     	            		<button type="submit" class="btn btn-primary">Kirim!</button>

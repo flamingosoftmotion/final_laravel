@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateJawabanTable extends Migration
+class CreateKomentarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateJawabanTable extends Migration
      */
     public function up()
     {
-        
-        Schema::create('jawaban', function (Blueprint $table) {
+        Schema::create('komentar', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('isi');
+            $table->text('komentar');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('pertanyaan_id');
+            $table->unsignedBigInteger('jawaban');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('pertanyaan_id')->references('id')->on('pertanyaan');
+            $table->foreign('jawaban')->references('id')->on('jawaban');
             $table->timestamps();
-            
-
         });
     }
 
@@ -34,7 +31,6 @@ class CreateJawabanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jawaban');
-
+        Schema::dropIfExists('komentar');
     }
 }

@@ -10,6 +10,9 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Pertanyaan</h1>
+            @foreach ($data_pertanyaan as $index => $data)
+            <h3>Poin Reputasi Anda: {{ $data->user->reputation }}</h3>
+            @endforeach
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -43,7 +46,7 @@
                     @foreach ($data_pertanyaan as $index => $data)
                     <tr>
                       <td>{{ $index +1 }}</td>
-                      <td>{{ $data->judul }} </td>
+                      <td>{{ $data->judul }}</td>
                       <td>{!!$data->isi!!}</td>
                       <td>
                       @foreach($data->tags as $tag)

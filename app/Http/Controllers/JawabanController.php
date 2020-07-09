@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Jawaban;
-use App\Pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\User;
+use App\Jawaban;
+use App\Pertanyaan;
 
 
 class JawabanController extends Controller
 {
     public function show()
     {
+        $cek = User::find(1);
         $data_jawaban = Jawaban::all();
-        return view('jawaban.show', compact('data_jawaban'));
+        return view('jawaban.show', compact('data_jawaban','cek'));
     }
 
     public function index($pertanyaan_id)
@@ -28,9 +30,12 @@ class JawabanController extends Controller
             'isi' => 'required'
         ]);
 
+        $cek = Pertanyaan::find($pertanyaan_id);
+        
 		$data = Jawaban::create([
-			'isi' => $request->get('isi'),
-			'pertanyaan_id' => $pertanyaan_id
+            'isi' => $request->isi,
+            'user_id' => $cek->user->id,
+			'pertanyaan_id' => $cek->id
 		]); 
 
 		return redirect('/jawaban')->with('success','Jawaban berhasil terkirim');;   	

@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+// use App\Pertanyaan;
+// use App\Jawaban;
+// use App\Komentar;
 
 class User extends Authenticatable
 {
@@ -37,10 +40,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts() //tambahan (s) karena user memiliki banyak post
-    {
-        return $this->hasMany(Post::class);
-    }
+    // public function pertanyaan()
+    // {
+    //     return $this->hasMany(Pertanyaan::class, 'pertanyaan_id', );
+    // }
+
+    // public function jawaban()
+    // {
+    //     return $this->hasOne(Jawaban::class);
+    // }
+
+    // public function komentar()
+    // {
+    //     return $this->hasMany(Komentar::class);
+    // }
+
+    // public function pertanyaan() //tambahan (s) karena user memiliki banyak post
+    // {
+    //     return $this->hasMany(Pertanyaan::class, 'pertanyaan_id');
+    // }
 
     public function getAvatar()
      {

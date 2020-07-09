@@ -23,6 +23,7 @@ class UsersSeeder extends Seeder
               'email' 			  => 'usersatu@gmail.com',
               'email_verified_at' => NULL,
               'password'		  => bcrypt('rahasia'),
+              'reputation'    => 0,
               'remember_token'	  => Str::random(60),
               'created_at'        => \Carbon\Carbon::now(),
               'updated_at'        => \Carbon\Carbon::now()
@@ -36,6 +37,7 @@ class UsersSeeder extends Seeder
               'email' 			  => 'userdua@gmail.com',
               'email_verified_at' => NULL,
               'password'		  => bcrypt('rahasia'),
+              'reputation'    => 0,
               'remember_token'	  => Str::random(60),
               'created_at'        => \Carbon\Carbon::now(),
               'updated_at'        => \Carbon\Carbon::now()
@@ -49,6 +51,7 @@ class UsersSeeder extends Seeder
               'email' 			  => 'usertiga@gmail.com',
               'email_verified_at' => NULL,
               'password'		  => bcrypt('rahasia'),
+              'reputation'    => 0,
               'remember_token'	  => Str::random(60),
               'created_at'        => \Carbon\Carbon::now(),
               'updated_at'        => \Carbon\Carbon::now()
