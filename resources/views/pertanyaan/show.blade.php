@@ -41,7 +41,7 @@
                         <a href="{{ route('pertanyaan.count15') }}" class="btn btn-success btn-sm">Jawaban Relevan</a><br/><br/>
                         <a href="{{ route('pertanyaan.upvote') }}" class="btn btn-primary btn-sm">Upvote</a> || 
                         <a href="{{ route('pertanyaan.downvote') }}" class="btn btn-danger btn-sm">Downvote</a><br/><br/>
-                        <a href="{{ route('komentar') }}" class="btn btn-success btn-sm">Beri Komentar </a>
+                        <a href="#" class="btn btn-success btn-sm">Beri Komentar </a>
                       </td>
                     </tr>
                     @endforeach
