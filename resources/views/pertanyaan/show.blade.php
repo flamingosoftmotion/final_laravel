@@ -35,11 +35,7 @@
                     @foreach ($data_jawaban as $index => $data)
                     <tr>
                       <td>{{ $index +1 }}</td>
-                      <td>
-                        {{ $data->isi}}
-                        <a href=" {{ route('pertanyaan.plus')}}" class="fa fa-thumbs-o-up" aria-hidden="true"></a>
-                        <a href=" {{ route('pertanyaan.min')}}" class="fa fa-thumbs-o-down" aria-hidden="true"></a>
-                      </td>
+                      <td>{{ $data->is }}</td>
                       <td>{{ $data->pertanyaan->isi}}</td>
                       <td>{{ $data->created_at->format('d M Y')}}</td>
                       <td>
