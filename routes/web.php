@@ -26,6 +26,10 @@ Route::group(['middleware' => ['auth','checkRole:user']],function(){ //middlewar
     Route::get('/jawaban/{id}', 'JawabanController@index')->name('jawaban');
     Route::post('/jawaban/{id_pertanyaan}', 'JawabanController@store')->name('jawaban');
 
+    //Route untuk menghitung Nilai Vote
+    Route::get('/pertanyaan/plus', 'PertanyaanController@plusvote')->name('pertanyaan.plusvote');
+    Route::get('/pertanyaan/min', 'PertanyaanController@minvote')->name('pertanyaan.minvote');
+
 });
 
 

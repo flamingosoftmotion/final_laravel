@@ -36,13 +36,17 @@
                     <tr>
                       <td>{{ $index +1 }}</td>
                       <td>{{ $data->isi}}</td>
-                      <td>{{ $data->pertanyaan->isi}}</td>
+                      <td>
+                        {{ $data->pertanyaan->isi}}
+                        <a href=" {{ route('pertanyaan.plus')}}" class="fa fa-thumbs-o-up" aria-hidden="true"></a>
+                        <a href=" {{ route('pertanyaan.min')}}" class="fa fa-thumbs-o-down" aria-hidden="true"></a>
+                      </td>
                       <td>{{ $data->created_at->format('d M Y')}}</td>
                       <td>
                         <a href="{{ route('pertanyaan.count15') }}" class="btn btn-success btn-sm">Jawaban Relevan</a><br/><br/>
-                        <a href="{{ route('pertanyaan.upvote') }}" class="btn btn-primary btn-sm">Upvote ({{ $upvote }})</a>
+                        <a href="{{ route('pertanyaan.upvote') }}" class="btn btn-primary btn-sm">Upvote</a>
                         || 
-                        <a href="{{ route('pertanyaan.downvote') }}" class="btn btn-danger btn-sm">Downvote ({{ $downvote }})</a><br/><br/>
+                        <a href="{{ route('pertanyaan.downvote') }}" class="btn btn-danger btn-sm">Downvote</a><br/><br/>
                         <a href="#" class="btn btn-success btn-sm">Beri Komentar </a>
                       </td>
                     </tr>
