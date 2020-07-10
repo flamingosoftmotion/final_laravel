@@ -9,7 +9,6 @@
           <div class="col-sm-6">
             <h1>Jawaban</h1>
             <h2>Poin Reputasi Anda: {{ $poin }}</h2>
-            <h3> Poin Vote Pertanyaan : {{ $poin_vote }}</h3>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -41,9 +40,9 @@
                       <td>{{ $data->created_at->format('d M Y')}}</td>
                       <td>
                         <a href="{{ route('pertanyaan.count15') }}" class="btn btn-success btn-sm">Jawaban Relevan</a><br/><br/>
-                        <a href="{{ route('pertanyaan.upvote') }}" class="btn btn-primary btn-sm">Upvote ({{ $poin_vote }})</a>
+                        <a href="{{ route('pertanyaan.upvote') }}" class="btn btn-primary btn-sm">Upvote ({{ $upvote }})</a>
                         || 
-                        <a href="{{ route('pertanyaan.downvote') }}" class="btn btn-danger btn-sm">Downvote ({{ $poin_vote }})</a><br/><br/>
+                        <a href="{{ route('pertanyaan.downvote') }}" class="btn btn-danger btn-sm">Downvote ({{ $downvote }})</a><br/><br/>
                         <a href="#" class="btn btn-success btn-sm">Beri Komentar </a>
                       </td>
                     </tr>

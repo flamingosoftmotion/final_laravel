@@ -82,7 +82,10 @@ class PertanyaanController extends Controller
         $poin = ($user->reputation);
 
         $data_pertanyaan = Pertanyaan::find(1);
-        $poin_vote = ($data_pertanyaan->votes);
+        $upvote = ($data_pertanyaan->votes);
+
+        $data_pertanyaan = Pertanyaan::find(1);
+        $downvote = ($data_pertanyaan->votes);
 
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
         return view('pertanyaan.show', compact(['data_jawaban','poin']));
@@ -94,6 +97,9 @@ class PertanyaanController extends Controller
         $user = User::find(1);
         $user->reputation += 10;
         $user->save();
+        $data_pertanyaan = Pertanyaan::find(1);
+        $data_pertanyaan->votes -= 1;
+        $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
 
@@ -104,7 +110,7 @@ class PertanyaanController extends Controller
         $user->save();
         $data_pertanyaan = Pertanyaan::find(1);
         $data_pertanyaan->votes += 1;
-        $data_pertanyaan->save();
+        $data_pertanyaan->save()->$upvote;
         return redirect('/pertanyaan');
     }
 
@@ -115,8 +121,10 @@ class PertanyaanController extends Controller
         $user->save();
         $data_pertanyaan = Pertanyaan::find(1);
         $data_pertanyaan->votes -= 1;
-        $data_pertanyaan->save();
+        $data_pertanyaan->save()->$downvote;
         return redirect('/pertanyaan');
     }
+
+
 
 }
