@@ -122,14 +122,14 @@ class PertanyaanController extends Controller
         $data_pertanyaan = Pertanyaan::find(1);
         $data_pertanyaan->votes += 1;
         $data_pertanyaan->save();
-        return redirect('/pertanyaan/plus');
+        return view('pertanyaan.show');
     }
 
     public function minvote (){
         $data_pertanyaan = Pertanyaan::find(1);
         $data_pertanyaan->votes -= 1;
         $data_pertanyaan->save();
-        return redirect('/pertanyaan/min');
+        return view('pertanyaan.show');
     }
 
 

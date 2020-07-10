@@ -35,12 +35,12 @@
                     @foreach ($data_jawaban as $index => $data)
                     <tr>
                       <td>{{ $index +1 }}</td>
-                      <td>{{ $data->isi}}</td>
                       <td>
-                        {{ $data->pertanyaan->isi}}
+                        {{ $data->isi}}
                         <a href=" {{ route('pertanyaan.plus')}}" class="fa fa-thumbs-o-up" aria-hidden="true"></a>
                         <a href=" {{ route('pertanyaan.min')}}" class="fa fa-thumbs-o-down" aria-hidden="true"></a>
                       </td>
+                      <td>{{ $data->pertanyaan->isi}}</td>
                       <td>{{ $data->created_at->format('d M Y')}}</td>
                       <td>
                         <a href="{{ route('pertanyaan.count15') }}" class="btn btn-success btn-sm">Jawaban Relevan</a><br/><br/>
