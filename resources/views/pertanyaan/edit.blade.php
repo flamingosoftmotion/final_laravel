@@ -10,7 +10,7 @@
             <h1>
               Pertanyaan
             </h1>
-            <h3>Poin Reputasi Anda: {{ $data_pertanyaan->user->reputation }}</h3>
+            <h2>Poin Reputasi Anda: {{ $poin }}</h2>
           </div>
         </div>
       </div><!-- /.container-fluid -->

@@ -10,6 +10,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Pertanyaan</h1>
+            <h2>Poin Reputasi Anda: {{ $poin }}</h2>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -69,7 +70,6 @@
             <!-- /.card -->
       </div>
       <!-- /.container-fluid -->
-      <h2 style="margin-left: 30px">Poin Reputasi Anda: {{ $data->user->reputation }}</h2>
     </section>
     <!-- /.content -->
   </div>

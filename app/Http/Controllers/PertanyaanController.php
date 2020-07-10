@@ -14,13 +14,18 @@ class PertanyaanController extends Controller
 {
     public function index()
     {
+        $user = User::find(1);
+        $poin = ($user->reputation);
         $data_pertanyaan = Pertanyaan::all();
-    	return view('pertanyaan.index', compact('data_pertanyaan'));
+    	return view('pertanyaan.index', compact(['data_pertanyaan', 'poin']));
     }
 
     public function create()
     {
-    	return view('pertanyaan.create');
+        $user = User::find(1);
+        $poin = ($user->reputation);
+
+        return view('pertanyaan.create', compact('poin'));
     }
 
     public function store(Request $request)
@@ -50,8 +55,11 @@ class PertanyaanController extends Controller
     
     public function edit($id)
     {
+        $user = User::find(1);
+        $poin = ($user->reputation);
+
         $data_pertanyaan = Pertanyaan::findOrFail($id);
-        return view('pertanyaan.edit', compact('data_pertanyaan'));
+        return view('pertanyaan.edit', compact(['data_pertanyaan','poin']));
     }
 
     public function update(Request $request, $id)
@@ -70,8 +78,11 @@ class PertanyaanController extends Controller
 
     public function show($id)
     {
+        $user = User::find(1);
+        $poin = ($user->reputation);
+
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
-        return view('pertanyaan.show', compact(['data_jawaban']));
+        return view('pertanyaan.show', compact(['data_jawaban','poin']));
     }
 
 //Fungsi untuk menghitung Nilai Poin
