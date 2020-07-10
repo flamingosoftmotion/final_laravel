@@ -85,7 +85,7 @@ class PertanyaanController extends Controller
         $vote = ($data_pertanyaan->votes);
 
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
-        return view('pertanyaan.show', compact(['data_jawaban','poin']));
+        return view('pertanyaan.show', compact(['data_jawaban','poin','$vote']));
     }
 
 //Fungsi untuk menghitung Nilai Poin
@@ -105,7 +105,9 @@ class PertanyaanController extends Controller
         $user = User::find(1);
         $user->reputation += 1;
         $user->save();
-
+        $data_pertanyaan = Pertanyaan::find(1);
+        $data_pertanyaan->votes += 1;
+        $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
 
@@ -114,21 +116,19 @@ class PertanyaanController extends Controller
         $user = User::find(1);
         $user->reputation -= 1;
         $user->save();
-        
+        $data_pertanyaan = Pertanyaan::find(1);
+        $data_pertanyaan->votes -= 1;
+        $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
 
     public function plusvote() {
-        $data_pertanyaan = Pertanyaan::find(1);
-        $data_pertanyaan->votes += 1;
-        $data_pertanyaan->save();
+        
         return view('pertanyaan.show');
     }
 
     public function minvote (){
-        $data_pertanyaan = Pertanyaan::find(1);
-        $data_pertanyaan->votes -= 1;
-        $data_pertanyaan->save();
+        
         return view('pertanyaan.show');
     }
 
