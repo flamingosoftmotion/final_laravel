@@ -85,7 +85,7 @@ class PertanyaanController extends Controller
         $vote = ($data_pertanyaan->votes);
 
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
-        return view('pertanyaan.show', compact(['data_jawaban','poin','$vote']));
+        return view('pertanyaan.show', compact(['data_jawaban','poin','vote']));
     }
 
 //Fungsi untuk menghitung Nilai Poin
