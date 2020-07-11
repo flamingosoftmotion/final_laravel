@@ -15,7 +15,7 @@ class PertanyaanController extends Controller
     public function index()
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
         $data_pertanyaan = Pertanyaan::all();
     	return view('pertanyaan.index', compact(['data_pertanyaan', 'poin']));
     }
@@ -23,7 +23,7 @@ class PertanyaanController extends Controller
     public function create()
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
 
         return view('pertanyaan.create', compact('poin'));
     }
@@ -57,7 +57,7 @@ class PertanyaanController extends Controller
     public function edit($id)
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
 
         $data_pertanyaan = Pertanyaan::findOrFail($id);
         return view('pertanyaan.edit', compact(['data_pertanyaan','poin']));
@@ -81,10 +81,10 @@ class PertanyaanController extends Controller
     public function show($id)
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
 
-        $data_pertanyaan = Pertanyaan::find(1);
-        $vote = ($data_pertanyaan->votes);
+        $data_pertanyaan = Pertanyaan::find($id);
+        $vote = $data_pertanyaan->votes;
 
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
         return view('pertanyaan.show', compact(['data_jawaban','poin','vote']));
