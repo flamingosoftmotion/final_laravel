@@ -17,9 +17,10 @@ class CreatePertanyaanTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->text('isi');
+            $table->integer('votes');
             $table->json('tags');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps(); 
         });
     }

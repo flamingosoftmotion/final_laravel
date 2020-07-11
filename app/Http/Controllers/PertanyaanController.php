@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Pertanyaan;
 use App\Jawaban;
 use App\User;
-
+ 
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -41,15 +41,16 @@ class PertanyaanController extends Controller
 		$data->judul = $request->judul;
 		$data->isi = $request->isi;
         $data->tags = $request->tags;
+        $data->votes = 0;
         $data->user_id = 1;
         $data->save();
 
 		return redirect('/pertanyaan')->with('success','Pertanyaan berhasil terkirim');	
     }
 
-    public function delete($pertanyaan_id)
+    public function delete($id)
     {
-        Pertanyaan::find($pertanyaan_id)->delete();
+        Pertanyaan::find($id)->delete();
         return redirect('/pertanyaan')->with('success','Pertanyaan berhasil dihapus');
         }
     
@@ -70,7 +71,8 @@ class PertanyaanController extends Controller
             'judul' => $request->judul,
             'isi' => $request->isi,
             'tags' => $cek->tags,
-            'user_id' => $cek->user->id
+            'user_id' => $cek->user->id,
+            'votes' => $cek->votes
         ]); 
 
         return redirect('/pertanyaan')->with('success','Pertanyaan berhasil terupdate'); 
