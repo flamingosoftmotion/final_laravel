@@ -37,6 +37,7 @@
                     <td>Tag</td>
                     <td>Tanggal Dibuat</td>
                     <td>Tanggal Diperbaharui</td>
+                    <td>Pembuat Pertanyaan</td>
                     <td>Aksi</td>
                   </tr>
                   </thead>
@@ -53,6 +54,7 @@
                       </td>
                       <td>{{ $data->created_at->format('d M Y')}}</td>
                       <td>{{ $data->updated_at->format('d M Y')}}</td>
+                      <td>{{ $data->user->username }}</td>
                       <td>
                         <a href="{{ route('jawaban', $data->id) }}" class="btn btn-primary btn-sm">Jawab</a>
                         <a href="{{ route('pertanyaan.show', $data->id) }}"  class="btn btn-info btn-sm delete"><i class="nav-icon fas fa-eye" aria-hidden="true"></i></a>
