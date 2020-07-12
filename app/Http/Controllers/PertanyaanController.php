@@ -108,8 +108,12 @@ class PertanyaanController extends Controller
         $user->reputation += 1;
         $user->save();
         $data_pertanyaan = Pertanyaan::find(1);
-        $data_pertanyaan->upvotes += 1;
-        $data_pertanyaan->downvotes -=1;
+        if ($data_pertanyaan->upvotes + 1) {
+            $data_pertanyaan->upvotes += 1
+        }
+        else ($data_pertanyaan->downvotes + 1) {
+            $data_pertanyaan->upvotes -= 1
+        }
         $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
@@ -120,8 +124,12 @@ class PertanyaanController extends Controller
         $user->reputation -= 1;
         $user->save();
         $data_pertanyaan = Pertanyaan::find(1);
-        $data_pertanyaan->downvotes +=1;
-        $data_pertanyaan->upvotes -= 1;
+        if ($data_pertanyaan->downvotes + 1) {
+            $data_pertanyaan->downvotes += 1
+        }
+        else ($data_pertanyaan->upvotes + 1) {
+            $data_pertanyaan->downvotes -= 1
+        }
         $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
