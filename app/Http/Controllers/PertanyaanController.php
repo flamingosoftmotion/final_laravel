@@ -97,9 +97,6 @@ class PertanyaanController extends Controller
         $user = User::find(1);
         $user->reputation += 15;
         $user->save();
-        $data_pertanyaan = Pertanyaan::find(1);
-        $data_pertanyaan->votes -= 1;
-        $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
 
