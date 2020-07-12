@@ -82,7 +82,8 @@ class PertanyaanController extends Controller
         $poin = ($user->reputation);
 
         $data_pertanyaan = Pertanyaan::find(1);
-        $vote = ($data_pertanyaan->votes);
+        $upvote = ($data_pertanyaan->votes);
+        $downvote = ($data_pertanyaan->votes);
 
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
         return view('pertanyaan.show', compact(['data_jawaban','poin','vote']));
@@ -121,17 +122,5 @@ class PertanyaanController extends Controller
         $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
-
-    public function plusvote() {
-        
-        return view('pertanyaan.show');
-    }
-
-    public function minvote (){
-        
-        return view('pertanyaan.show');
-    }
-
-
 
 }
