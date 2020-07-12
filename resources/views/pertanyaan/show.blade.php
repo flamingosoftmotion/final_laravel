@@ -35,7 +35,7 @@
                     @foreach ($data_jawaban as $index => $data)
                     <tr>
                       <td>{{ $index +1 }}</td>
-                      <td>{{ $data->is }}</td>
+                      <td>{{ $data->isi }}</td>
                       <td>{{ $data->pertanyaan->isi}}</td>
                       <td>{{ $data->created_at->format('d M Y')}}</td>
                       <td>
