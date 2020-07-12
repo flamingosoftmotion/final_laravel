@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Pertanyaan;
 use App\Jawaban;
 use App\User;
-
+ 
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -15,7 +15,7 @@ class PertanyaanController extends Controller
     public function index()
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
         $data_pertanyaan = Pertanyaan::all();
     	return view('pertanyaan.index', compact(['data_pertanyaan', 'poin']));
     }
@@ -23,7 +23,7 @@ class PertanyaanController extends Controller
     public function create()
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
 
         return view('pertanyaan.create', compact('poin'));
     }
@@ -41,22 +41,23 @@ class PertanyaanController extends Controller
 		$data->judul = $request->judul;
 		$data->isi = $request->isi;
         $data->tags = $request->tags;
+        $data->votes = 0;
         $data->user_id = 1;
         $data->save();
 
 		return redirect('/pertanyaan')->with('success','Pertanyaan berhasil terkirim');	
     }
 
-    public function delete($pertanyaan_id)
+    public function delete($id)
     {
-        Pertanyaan::find($pertanyaan_id)->delete();
+        Pertanyaan::find($id)->delete();
         return redirect('/pertanyaan')->with('success','Pertanyaan berhasil dihapus');
         }
     
     public function edit($id)
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
 
         $data_pertanyaan = Pertanyaan::findOrFail($id);
         return view('pertanyaan.edit', compact(['data_pertanyaan','poin']));
@@ -70,7 +71,8 @@ class PertanyaanController extends Controller
             'judul' => $request->judul,
             'isi' => $request->isi,
             'tags' => $cek->tags,
-            'user_id' => $cek->user->id
+            'user_id' => $cek->user->id,
+            'votes' => $cek->votes
         ]); 
 
         return redirect('/pertanyaan')->with('success','Pertanyaan berhasil terupdate'); 
@@ -79,11 +81,11 @@ class PertanyaanController extends Controller
     public function show($id)
     {
         $user = User::find(1);
-        $poin = ($user->reputation);
+        $poin = $user->reputation;
 
-        $data_pertanyaan = Pertanyaan::find(1);
-        $upvote = ($data_pertanyaan->votes);
-        $downvote = ($data_pertanyaan->votes);
+        $data_pertanyaan = Pertanyaan::find($id);
+        $upvote = $data_pertanyaan->upvotes;
+        $downvote = $data_pertanyaan->downvotes;
 
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
         return view('pertanyaan.show', compact(['data_jawaban','poin','vote']));
@@ -93,7 +95,7 @@ class PertanyaanController extends Controller
     public function count15()
     {
         $user = User::find(1);
-        $user->reputation += 10;
+        $user->reputation += 15;
         $user->save();
         $data_pertanyaan = Pertanyaan::find(1);
         $data_pertanyaan->votes -= 1;
@@ -107,7 +109,8 @@ class PertanyaanController extends Controller
         $user->reputation += 1;
         $user->save();
         $data_pertanyaan = Pertanyaan::find(1);
-        $data_pertanyaan->votes += 1;
+        $data_pertanyaan->upvotes += 1;
+        $data_pertanyaan->downvotes -=1;
         $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }
@@ -118,7 +121,8 @@ class PertanyaanController extends Controller
         $user->reputation -= 1;
         $user->save();
         $data_pertanyaan = Pertanyaan::find(1);
-        $data_pertanyaan->votes -= 1;
+        $data_pertanyaan->downvotes +=1;
+        $data_pertanyaan->upvotes -= 1;
         $data_pertanyaan->save();
         return redirect('/pertanyaan');
     }

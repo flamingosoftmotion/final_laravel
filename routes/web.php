@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth','checkRole:user']],function(){ //middlewar
 
     Route::get('/jawaban', 'JawabanController@show');
     Route::get('/jawaban/{id}', 'JawabanController@index')->name('jawaban');
-    Route::post('/jawaban/{id_pertanyaan}', 'JawabanController@store')->name('jawaban');
+    Route::post('/jawaban/{id}', 'JawabanController@store')->name('jawaban');
 
 
 });
