@@ -41,7 +41,8 @@ class PertanyaanController extends Controller
 		$data->judul = $request->judul;
 		$data->isi = $request->isi;
         $data->tags = $request->tags;
-        $data->votes = 0;
+        $data->upvotes = 0;
+        $data->downvotes = 0;
         $data->user_id = 1;
         $data->save();
 
@@ -72,7 +73,8 @@ class PertanyaanController extends Controller
             'isi' => $request->isi,
             'tags' => $cek->tags,
             'user_id' => $cek->user->id,
-            'votes' => $cek->votes
+            'upvotes' => $cek->upvotes,
+            'downvotes' => $cek->downvotes
         ]); 
 
         return redirect('/pertanyaan')->with('success','Pertanyaan berhasil terupdate'); 
@@ -88,7 +90,7 @@ class PertanyaanController extends Controller
         $downvote = $data_pertanyaan->downvotes;
 
         $data_jawaban = Jawaban::where('pertanyaan_id', $id)->get();
-        return view('pertanyaan.show', compact(['data_jawaban','poin','vote']));
+        return view('pertanyaan.show', compact(['data_jawaban','poin','upvote', 'downvote']));
     }
 
 //Fungsi untuk menghitung Nilai Poin
